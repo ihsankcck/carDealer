@@ -1,0 +1,1313 @@
+version: 1
+directus: 9.22.4
+collections:
+  - collection: cars
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: cars
+      color: '#702929'
+      display_template: null
+      group: null
+      hidden: false
+      icon: directions_car
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: draft
+    schema:
+      name: cars
+      sql: >-
+        CREATE TABLE "cars" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+        `status` varchar(255) NOT NULL DEFAULT 'draft', `date_created` datetime
+        NULL, `Marka` varchar(255) NULL, `Model` varchar(255) NULL, `Paket`
+        varchar(255) NULL, `Km` varchar(255) NULL, `Fiyat` varchar(255) NULL,
+        `img` char(36) NOT NULL DEFAULT null, `Vites` varchar(255) null,
+        CONSTRAINT `cars_img_foreign` FOREIGN KEY (`img`) REFERENCES
+        `directus_files` (`id`) ON DELETE NO ACTION)
+  - collection: mainPage
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: mainPage
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: true
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: mainPage
+      sql: >-
+        CREATE TABLE "mainPage" (`id` integer PRIMARY KEY AUTOINCREMENT NOT
+        NULL, `mainTitle` text NULL, `carsTitle` varchar(255) NULL, `aboutImg`
+        char(36) NULL, `experianceTitle` varchar(255) NULL, CONSTRAINT
+        `mainpage_aboutimg_foreign` FOREIGN KEY (`aboutImg`) REFERENCES
+        `directus_files` (`id`) ON DELETE SET NULL)
+  - collection: sayfalar
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: sayfalar
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: null
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: draft
+    schema:
+      name: sayfalar
+      sql: >-
+        CREATE TABLE "sayfalar" (`id` integer PRIMARY KEY AUTOINCREMENT NOT
+        NULL, `status` varchar(255) NOT NULL DEFAULT 'draft', `sort` integer
+        NULL, `user_created` char(36) NULL, `date_created` datetime NULL,
+        `user_updated` char(36) NULL, `date_updated` datetime NULL, `baslik`
+        varchar(255) null, `aciklama` text null, `slug` char(36) null, `summary`
+        text null, CONSTRAINT `sayfalar_user_created_foreign` FOREIGN KEY
+        (`user_created`) REFERENCES `directus_users` (`id`), CONSTRAINT
+        `sayfalar_user_updated_foreign` FOREIGN KEY (`user_updated`) REFERENCES
+        `directus_users` (`id`))
+fields:
+  - collection: cars
+    field: Fiyat
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Fiyat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Değer Giriniz
+      readonly: false
+      required: false
+      sort: 9
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Fiyat
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: Km
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Km
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Km Giriniz
+      readonly: false
+      required: false
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Km
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: Marka
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Marka
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: directions_car
+        placeholder: Marka giriniz
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Marka
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: Model
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Model
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Model giriniz
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Model
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: Paket
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Paket
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Paket Giriniz
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Paket
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: Vites
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: Vites
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Otomatik
+            value: oto
+          - text: Manuel
+            value: Manuel
+        placeholder: Vites Tipi Seçiniz
+      readonly: false
+      required: false
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: Vites
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: cars
+    field: date_created
+    meta:
+      collection: cars
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 3
+      special:
+        - cast-timestamp
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: datetime
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: date_created
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: timestamp
+  - collection: cars
+    field: id
+    meta:
+      collection: cars
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: integer
+  - collection: cars
+    field: img
+    meta:
+      collection: cars
+      conditions: null
+      display: image
+      display_options: null
+      field: img
+      group: null
+      hidden: false
+      interface: file
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 10
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: img
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: uuid
+  - collection: cars
+    field: status
+    meta:
+      collection: cars
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: var(--primary)
+          - text: $t:draft
+            value: draft
+            foreground: '#18222F'
+            background: '#D3DAE4'
+          - text: $t:archived
+            value: archived
+            foreground: '#FFFFFF'
+            background: var(--warning)
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: draft
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: status
+      numeric_precision: null
+      numeric_scale: null
+      table: cars
+    type: string
+  - collection: directus_settings
+    field: email
+    meta:
+      collection: directus_settings
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: email
+      numeric_precision: null
+      numeric_scale: null
+      table: directus_settings
+    type: string
+  - collection: directus_settings
+    field: phone
+    meta:
+      collection: directus_settings
+      conditions: null
+      display: null
+      display_options: null
+      field: phone
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      table: directus_settings
+    type: string
+  - collection: mainPage
+    field: aboutImg
+    meta:
+      collection: mainPage
+      conditions: null
+      display: null
+      display_options: null
+      field: aboutImg
+      group: null
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: aboutImg
+      numeric_precision: null
+      numeric_scale: null
+      table: mainPage
+    type: uuid
+  - collection: mainPage
+    field: carsTitle
+    meta:
+      collection: mainPage
+      conditions: null
+      display: null
+      display_options: null
+      field: carsTitle
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: carsTitle
+      numeric_precision: null
+      numeric_scale: null
+      table: mainPage
+    type: string
+  - collection: mainPage
+    field: experianceTitle
+    meta:
+      collection: mainPage
+      conditions: null
+      display: null
+      display_options: null
+      field: experianceTitle
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: experianceTitle
+      numeric_precision: null
+      numeric_scale: null
+      table: mainPage
+    type: string
+  - collection: mainPage
+    field: id
+    meta:
+      collection: mainPage
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: null
+      numeric_scale: null
+      table: mainPage
+    type: integer
+  - collection: mainPage
+    field: mainTitle
+    meta:
+      collection: mainPage
+      conditions: null
+      display: null
+      display_options: null
+      field: mainTitle
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: mainTitle
+      numeric_precision: null
+      numeric_scale: null
+      table: mainPage
+    type: text
+  - collection: sayfalar
+    field: aciklama
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: aciklama
+      group: null
+      hidden: false
+      interface: input-rich-text-html
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 11
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: aciklama
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: text
+  - collection: sayfalar
+    field: baslik
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: baslik
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: baslik
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: string
+  - collection: sayfalar
+    field: date_created
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 7
+      special:
+        - cast-timestamp
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: datetime
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: date_created
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: timestamp
+  - collection: sayfalar
+    field: date_updated
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 9
+      special:
+        - cast-timestamp
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: datetime
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: date_updated
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: timestamp
+  - collection: sayfalar
+    field: id
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: integer
+  - collection: sayfalar
+    field: slug
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: slug
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: uuid
+  - collection: sayfalar
+    field: sort
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: integer
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: sort
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: integer
+  - collection: sayfalar
+    field: status
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: var(--primary)
+          - text: $t:draft
+            value: draft
+            foreground: '#18222F'
+            background: '#D3DAE4'
+          - text: $t:archived
+            value: archived
+            foreground: '#FFFFFF'
+            background: var(--warning)
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: varchar
+      default_value: draft
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: status
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: string
+  - collection: sayfalar
+    field: summary
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: null
+      display_options: null
+      field: summary
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 10
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      data_type: text
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: summary
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: text
+  - collection: sayfalar
+    field: user_created
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 6
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: user_created
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: string
+  - collection: sayfalar
+    field: user_updated
+    meta:
+      collection: sayfalar
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      sort: 8
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: user_updated
+      numeric_precision: null
+      numeric_scale: null
+      table: sayfalar
+    type: string
+relations:
+  - collection: cars
+    field: img
+    meta:
+      junction_field: null
+      many_collection: cars
+      many_field: img
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: img
+      constraint_name: null
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      on_delete: NO ACTION
+      on_update: NO ACTION
+      table: cars
+  - collection: mainPage
+    field: aboutImg
+    meta:
+      junction_field: null
+      many_collection: mainPage
+      many_field: aboutImg
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: aboutImg
+      constraint_name: null
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: mainPage
+  - collection: sayfalar
+    field: user_created
+    meta:
+      junction_field: null
+      many_collection: sayfalar
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user_created
+      constraint_name: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: NO ACTION
+      on_update: NO ACTION
+      table: sayfalar
+  - collection: sayfalar
+    field: user_updated
+    meta:
+      junction_field: null
+      many_collection: sayfalar
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user_updated
+      constraint_name: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: NO ACTION
+      on_update: NO ACTION
+      table: sayfalar

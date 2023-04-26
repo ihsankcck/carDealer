@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "npx directus start"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.4"
+  }
+}

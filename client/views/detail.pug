@@ -1,0 +1,130 @@
+extends layout/main-layout
+
+block styles
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css')
+    link(rel="stylesheet" href="./styles/detailswiper.css")
+
+block scripts 
+    script(src='https://kit.fontawesome.com/97147632a1.js' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js')
+
+    script.
+        var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        },
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+        loop: true,
+        spaceBetween: 10,
+        thumbs: {
+        swiper: swiper,
+        },
+        });
+
+block content
+
+    main
+        .container
+            section.my-10 
+                .notice-area
+                    .notice-area_left
+                        .notice-area_tag
+                            span Sat&imath;l&imath;k
+                            h2.notice-area_title Gorgeous Home For Sale In Jersey
+                    .notice-area_right
+                        .notice-price
+                            h4 770.000 TL
+                .content
+                    .left 
+                        .galery            
+                            .swiper.mySwiper2(style='--swiper-navigation-color: #fff; --swiper-pagination-color: #fff')
+                                .swiper-wrapper
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/68/97/51/x5_1091689751m4e.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_10929372973jh.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297mof.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297nhp.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-7.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-8.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-9.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-10.jpg')
+                            .swiper.mySwiper(thumbsslider='')
+                                .swiper-wrapper
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/68/97/51/x5_1091689751m4e.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_10929372973jh.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297mof.jpg')
+                                    .swiper-slide
+                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297nhp.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-7.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-8.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-9.jpg')
+                                    .swiper-slide
+                                        img(src='https://swiperjs.com/demos/images/nature-10.jpg')
+                                .swiper-button-next
+                                .swiper-button-prev
+                        .overview
+                            h4 Overview 
+                            .overview-content
+                                ul 
+                                    li.cnter
+                                        i.fa-solid.fa-engine
+                                        span Otomatik
+                                    li.cnter 
+                                        i.fa-solid.fa-gas-pump 
+                                        span Dizel
+                                    li.cnter 
+                                        i.fa-solid.fa-road
+                                        span 320.000Km
+                                    li.cnter 
+                                        i.fa-solid.fa-gears
+                                        span Otomatik
+                                    li.cnter 
+                                        i.fa-solid.fa-calendar-week 
+                                        span 2015
+                        .description
+                            h4 Description
+                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cumque quia illum ab enim ducimus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas aspernatur temporibus blanditiis consequuntur omnis!
+                    .right 
+                        .detail-contact
+                            h3.form-title Bizimle Hemen İletişime Geçin
+                            form.form-action(onsubmit="sendMessage(event); return false")
+                                .form-box
+                                    .input-box
+                                        .input
+                                            input(type='text' name='first_name' id='' required)
+                                            label(for='') İsim
+                                        .input
+                                            input(type='text' name='last_name' id='' required)
+                                            label(for='') Soyisim
+                                    .input-box
+                                        .input
+                                            input(type='email' name='mail' id='' required)
+                                            label(for='') Mail
+                                        .input
+                                            input(type='number' name='phone' id='' required)
+                                            label(for='') Telefon
+                                    .input-box
+                                        .input(style='width: 100%; margin-top: 10px')
+                                            textarea(name="message" cols="30" rows="2" required) 
+                                            label(for='') Mesajınız
+                                    button.btn(type="submit") Mesaj Gönder 

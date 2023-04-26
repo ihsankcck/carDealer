@@ -1,0 +1,10 @@
+-
+    var social = {
+        instagram: "fab fa-instagram",
+        facebook: "fab fa-facebook" 
+    }
+
+mixin socialIcon(type)
+    -
+        var className = social[type] ?? "fa-regular fa-circle-exclamation"
+    i(class=className, style="color: white")

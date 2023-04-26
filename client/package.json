@@ -1,0 +1,29 @@
+{
+  "name": "rentacar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --experimental-modules index",
+    "start": "node --experimental-modules index",
+    "tailwind:watch": "postcss ./public/styles/tailwind.css -w -o ./public/styles/app.css",
+    "tailwind:build": "postcss ./public/styles/tailwind.css -o ./public/styles/app.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@directus/sdk": "^10.3.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.2.6"
+  }
+}

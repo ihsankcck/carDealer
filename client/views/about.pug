@@ -1,0 +1,69 @@
+extends layout/main-layout
+
+block scripts
+    script(src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js")
+    script.
+        const mySwiper = new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        direction: 'horizontal',
+        loop: true,
+        spaceBetween: 50,
+        // If we need pagination
+        pagination: {
+        el: '.swiper-pagination',
+        },
+        // Navigation arrows
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+        // And if we need scrollbar
+        breakpoints: {
+        640: {
+        slidesPerView: 3,
+        },
+        1024: {
+        slidesPerView: 3,
+        },
+        },
+        });
+
+block styles 
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css')
+
+
+block content
+    main
+        .banner(style=`background: linear-gradient(0deg, #053a63bf, #053a636b),url(/cms/assets/${pageDetail.banner}?format=webp)`)
+            h1.text-white= pageDetail.baslik
+        .container
+            .aboutme.flex.justify-between.items-center.my-36
+                .max-w-2xl.flex-1
+                    h1.title.text-4xl.text-blue-700.pb-6= layoutData.about.baslik
+                    p.text-xl.text-black.leading-7.pb-6!= layoutData.about.summary
+                    p.text-base.text-gray-600.leading-6!= layoutData.about.aciklama
+                .about-img.w-500.h-96.bg-gradient-to-r.from-gray-500.to-gray-800.relative.rounded-3xl
+                    img.absolute.w-full.h-full.bg-cover.-top-12.-left-12.rounded-3xl(src=`./images/dealer.jpg` alt='')
+        .customer
+            span.customer-span TAAHH&Uuml;D&Uuml;M&Uuml;Z 
+            h2.customer-title M&uuml;&scedil;terilerimiz Neler S&ouml;yl&uuml;yor?
+
+            .container
+                .swiper.mySwiper.faq-swiper
+                    .swiper-wrapper.customer-comment
+                        each faq in faqs
+                            .swiper-slide(class="h-full")
+                                .testimonial-card(class="px-16 rounded-3xl bg-white my-3 h-full")
+                                    .testimonial-card__header(class="py-6")
+                                        img(src="./images/faq.png" alt="")
+                                    .testimonial-card__content
+                                        p(class="text-gray-400")= faq.customerDesc
+                                    .testimonial-card__footer(class="py-6 mt-5 border-t-gray-50 border-t-2 ")
+                                        span(class="text-gray-400 text-2xl")= faq.customerFullname
+                    .swiper-button-next.faq-next
+                    .swiper-button-prev.faq-prev
+                    .swiper-pagination.faq-pagination
+
+
+
+

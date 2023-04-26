@@ -1,0 +1,27 @@
+extends layout/main-layout
+
+block content
+    main
+        .banner(style=`background: linear-gradient(0deg, #053a63bf, #053a636b),url(/cms/assets/${pageDetail.banner}?format=webp)`)
+            h1.text-white= pageDetail.baslik
+        .container
+            .content
+                each car in cars
+                    .carcard
+                        a(href="detail.pug") 
+                            .carcard-header
+                                img.carcard-img(src=`/cms/assets/${car.img}?format=webp` alt='')
+                                span= car.durum
+                            .carcard-body
+                                h4= `${car.Marka}   ${car.Model}`
+                                span= `${car.Fiyat} TL`
+                                p.textbox-desc= car.title
+
+                                .carcard__body__detail
+                                    span= `${car.Km} Km`
+                                    span= car.Vites
+                                    span= car.year
+                                .carcard__body__user
+                                    .user_detail
+                                        span= car.Paket
+

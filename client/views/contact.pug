@@ -1,0 +1,87 @@
+extend ./layout/main-layout
+
+block scripts
+    script(src='https://kit.fontawesome.com/97147632a1.js' crossorigin='anonymous')
+    script(src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js')
+    script.
+        var contactMap= !{JSON.stringify(layoutData.settings.basemaps.find(m => m.name === 'contact'))}
+        var style= contactMap.url
+        mapboxgl.accessToken= "#{layoutData.settings.mapbox_key}"
+        var map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: style, // style URL
+        center: ["#{layoutData.settings.map.coordinates[0][0]}", "#{layoutData.settings.map.coordinates[0][1]}"], // starting position [lng, lat]
+        zoom: 14    , // starting zoom
+        });
+
+        var coordinates = !{JSON.stringify(layoutData.settings.map.coordinates)}
+
+        coordinates.forEach(function(coordinate) {
+            new mapboxgl.Marker({
+                color: "#1d4ed8"
+            })
+            .setLngLat(coordinate)
+            .addTo(map);
+        })
+    script(src="/scripts/send-message.js")
+
+block styles
+    link(href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet')
+
+block content
+    #map(style='width: 100%;')
+
+    .container
+        .form-content
+            span.span-title= pageDetail.baslik 
+            h1.contactpage-title= pageDetail.summary 
+            p.contactpage-text!= pageDetail.aciklama 
+            .form-control
+                .form-control_information
+                    h2.information-title İletişim Seçenekleri
+                    p.information-text
+                        | Formu doldurun, ekibimiz 24 saat içinde size geri dönecektir.
+                    .information-choice
+                        div
+                            img(src='/images/phone-call2.png' alt='')
+                        p= layoutData.settings.phone
+                    .information-choice
+                        div
+                            img(src='/images/message2.png' alt='')
+                        p= layoutData.settings.email
+                    .information-choice
+                        div
+                            img(src='/images/location2.png' alt='')
+                        p= layoutData.settings.adress
+                    .information-choice
+                        div
+                            img(src='/images/clock2.png' alt='')
+                        p= layoutData.settings.workhours
+                form.form-action(onsubmit="sendMessage(event); return false")
+                    .form-box
+                        .input-box
+                            .input
+                                input(type='text' name='first_name' id='' required)
+                                label(for='') İsim
+                            .input
+                                input(type='text' name='last_name' id='' required)
+                                label(for='') Soyisim
+                        .input-box
+                            .input
+                                input(type='email' name='mail' id='' required)
+                                label(for='') Mail
+                            .input
+                                input(type='number' name='phone' id='' required)
+                                label(for='') Telefon
+                        .input-box
+                            .input(style='width: 100%; margin-top: 10px')
+                                textarea(name="message" cols="30" rows="2" required) 
+                                label(for='') Mesajınız
+                        button.btn(type="submit") Mesaj Gönder
+                        .socialmedia
+                            h3 Sosyal Medya.
+                            each social in layoutData.settings.social_medias
+                                a(href=social.url)
+                                    +socialIcon(social.type)
+
+

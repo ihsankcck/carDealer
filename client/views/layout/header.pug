@@ -1,0 +1,17 @@
+header.top-0.z-10.bg-white.sticky.py-5
+    .container.flex.justify-between.items-center
+        a(href="/")
+            img.h-14(src=`/cms/assets/${layoutData.settings.project_logo}?format=webp` alt='logo')
+        nav#main-nav.flex.header-nav
+            each page in layoutData.pages
+                a.head-link(href=page.slug class=layoutData.url.includes(page.slug) ? "head-link--active" : "")= page.baslik
+        nav.hamburger-nav(role='navigation')
+            #menuToggle
+                input(type='checkbox')
+                span
+                span
+                span
+                ul#menu
+                    each page in layoutData.pages
+                        li
+                            a(href=page.slug class=layoutData.url.includes(page.slug) ? "head-link--active" : "")= page.baslik
