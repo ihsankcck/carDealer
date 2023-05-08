@@ -38,6 +38,7 @@
 }
 
 .notice-area_tag span {
+  margin-bottom: 5px;
   border-radius: 4px;
   background-color: rgba(0, 115, 225, 0.85);
   padding: 2px 10px;
@@ -47,13 +48,14 @@
 }
 
 .notice-area_title {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
+  line-height: 1em;
 }
 
 .notice-price {
   color: #0073e1;
-  font-size: 30px;
+  font-size: 25px;
   padding: 0;
   float: right;
   font-weight: 500;
@@ -85,8 +87,9 @@
   color: #ffff;
   height: 40px;
   width: 40px;
+  margin: 0;
   top: 50%;
-  transform: translateY(50%);
+  transform: translateY(-50%);
 }
 
 .mySwiper:hover .swiper-button-next,
@@ -182,6 +185,6 @@
 
 .overview-content > ul {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 }

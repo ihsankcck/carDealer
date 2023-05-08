@@ -4,12 +4,15 @@ import pageModel from "../model/page-model.js";
 import faqModel from "../model/faq-model.js";
 
 const { fetchPageBySlug } = pageModel;
-const { fetchCars } = carModel;
+const { fetchCars, fetchShowCaseCars, fetchCarDetailtBySlug } = carModel;
 const { fetchMainpage } = mainpageModel;
 const { fetchFaq } = faqModel;
 
 export const homePage = async (req, res) => {
-  const [cars, mainpage] = await Promise.all([fetchCars(), fetchMainpage()]);
+  const [cars, mainpage] = await Promise.all([
+    fetchShowCaseCars(),
+    fetchMainpage(),
+  ]);
   res.render("index", { title: "Ana Sayfa", cars, mainpage });
 };
 
@@ -47,5 +50,22 @@ export const carsPage = async (req, res) => {
     fetchCars(),
   ]);
 
-  res.render("cars", { title: "Arabalar", cars, pageDetail });
+  res.render("cars", { title: "Arabalar", pageDetail, cars });
+};
+
+export const carDetailPage = async (req, res) => {
+  const slug = req.params.slug;
+
+  const carDetailResponse = await fetchCarDetailtBySlug(slug);
+
+  if (!carDetailResponse.data.length) {
+    return res.render("404");
+  }
+
+  const carDetail = carDetailResponse.data[0];
+
+  res.render("car-detail", {
+    title: carDetail.title,
+    carDetail,
+  });
 };

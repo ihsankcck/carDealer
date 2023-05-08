@@ -2,12 +2,12 @@ extends layout/main-layout
 
 block styles
     link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css')
-    link(rel="stylesheet" href="./styles/detailswiper.css")
+    link(rel="stylesheet" href="/styles/detailswiper.css")
 
 block scripts 
     script(src='https://kit.fontawesome.com/97147632a1.js' crossorigin='anonymous')
     script(src='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js')
-
+    script(src="/scripts/send-message.js")
     script.
         var swiper = new Swiper(".mySwiper", {
         loop: true,
@@ -36,74 +36,50 @@ block content
                 .notice-area
                     .notice-area_left
                         .notice-area_tag
-                            span Sat&imath;l&imath;k
-                            h2.notice-area_title Gorgeous Home For Sale In Jersey
+                            span= carDetail.durum
+                            h2.notice-area_title= title
                     .notice-area_right
                         .notice-price
-                            h4 770.000 TL
+                            h4= `${carDetail.Fiyat} TL`
                 .content
                     .left 
                         .galery            
                             .swiper.mySwiper2(style='--swiper-navigation-color: #fff; --swiper-pagination-color: #fff')
                                 .swiper-wrapper
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/68/97/51/x5_1091689751m4e.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_10929372973jh.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297mof.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297nhp.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-7.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-8.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-9.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-10.jpg')
-                            .swiper.mySwiper(thumbsslider='')
+                                    each image in carDetail.images
+                                        .swiper-slide
+                                            img(src=`/cms/assets/${image.directus_files_id}?format=webp` alt='image')
+
+
+                            .swiper.mySwiper(style='--swiper-navigation-color: #fff; --swiper-pagination-color: #fff')
                                 .swiper-wrapper
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/68/97/51/x5_1091689751m4e.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_10929372973jh.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297mof.jpg')
-                                    .swiper-slide
-                                        img(src='https://i0.shbdn.com/photos/93/72/97/x5_1092937297nhp.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-7.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-8.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-9.jpg')
-                                    .swiper-slide
-                                        img(src='https://swiperjs.com/demos/images/nature-10.jpg')
+                                    each image in carDetail.images
+                                        .swiper-slide
+                                            img(src=`/cms/assets/${image.directus_files_id}?format=webp` alt='image')
                                 .swiper-button-next
                                 .swiper-button-prev
                         .overview
-                            h4 Overview 
+                            h4 Özellikler
                             .overview-content
                                 ul 
                                     li.cnter.items-start
-                                        span Motor Hacmi:
-                                        span 1.3 tce
+                                        span Paket:
+                                        span= carDetail.Paket
                                     li.cnter 
                                         i.fa-solid.fa-gas-pump 
-                                        span Dizel
+                                        span= carDetail.fuel
                                     li.cnter 
                                         i.fa-solid.fa-road
-                                        span 320.000Km
+                                        span=`${carDetail.Km} Km`
                                     li.cnter 
                                         i.fa-solid.fa-gears
-                                        span Otomatik
+                                        span= carDetail.Vites
                                     li.cnter 
                                         i.fa-solid.fa-calendar-week 
-                                        span 2015
+                                        span= carDetail.year
                         .description
-                            h4 Description
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cumque quia illum ab enim ducimus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptas aspernatur temporibus blanditiis consequuntur omnis!
+                            h4 Açıklama
+                            p= carDetail.desc
                     .right 
                         .detail-contact
                             h3.form-title Bizimle Hemen İletişime Geçin
