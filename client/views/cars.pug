@@ -8,7 +8,7 @@ block content
             .content
                 each car in cars
                     .carcard
-                        a(href="detail.pug") 
+                        a(href=`/arabalar/${car.slug}`) 
                             .carcard-header
                                 img.carcard-img(src=`/cms/assets/${car.img}?format=webp` alt='')
                                 span= car.durum

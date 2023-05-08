@@ -59,6 +59,7 @@ app.use(async function (req, res, next) {
 
 app.get("/", pageController.homePage);
 app.get("/arabalar", pageController.carsPage);
+app.get("/arabalar/:slug", pageController.carDetailPage);
 app.get("/:slug", pageController.detailPage);
 
 app.post("/form", formController.sendMessage);
