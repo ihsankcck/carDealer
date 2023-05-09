@@ -814,7 +814,6 @@ textarea:focus {
   }
 
   .input > input:invalid {
-    border: none;
   }
 
   .socialmedia {
