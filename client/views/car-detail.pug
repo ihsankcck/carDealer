@@ -23,6 +23,10 @@ block scripts
         var swiper2 = new Swiper(".mySwiper2", {
         loop: true,
         spaceBetween: 10,
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        },
         thumbs: {
         swiper: swiper,
         },
@@ -49,7 +53,8 @@ block content
                                     each image in carDetail.images
                                         .swiper-slide
                                             img(src=`/cms/assets/${image.directus_files_id}?format=webp` alt='image')
-
+                                .swiper-button-next
+                                .swiper-button-prev
 
                             .swiper.mySwiper(style='--swiper-navigation-color: #fff; --swiper-pagination-color: #fff')
                                 .swiper-wrapper
@@ -62,8 +67,8 @@ block content
                             h4 Özellikler
                             .overview-content
                                 ul 
-                                    li.cnter.items-start
-                                        span Paket:
+                                    li.cnter
+                                        i.fa-solid.fa-car 
                                         span= carDetail.Paket
                                     li.cnter 
                                         i.fa-solid.fa-gas-pump 
